@@ -91,17 +91,9 @@
       <div class="col-12 col-md-8 text-white text-color">
         
         
-        @if (session()->has('message'))
-        <div class="alert alert-success">
-          {{ session('message') }}
-        </div>
-        @endif
+        <x-display_message/>
 
-        @if (session()->has('emailError'))
-        <div class="alert alert-danger">
-          {{ session('emailError') }}
-        </div>
-        @endif
+        <x-display_error/>
         
         
         <form method="POST" action="{{ route('send_email') }}">

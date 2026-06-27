@@ -7,13 +7,7 @@
   <div class="container-fluid articoli">
     <div class="row h-100 justify-content-center">
       
-      @if (session()->has('successMessage'))
-      <div class="alert alert-success">
-        {{ session('successMessage') }}
-      </div>
-      
-      
-      @endif     
+      <x-display_message/>
       
       
       {{-- @dd($articoli) --}}

@@ -12,15 +12,7 @@
         <div class="row justify-content-center text-color text-danger">
             <div class="col-12 col-md-8">
                 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+                <x-display_error/>
                 
                 
                 <form class=" bg-secondary-subtle rounded-3 p-3" method="POST" action="{{ route('merch.submit') }}" enctype="multipart/form-data">

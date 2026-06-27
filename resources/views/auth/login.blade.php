@@ -8,11 +8,14 @@
                 
             </div>
         </div>
-        
+
+<x-display_error/>
+                
+
          <div class="container text-info">
         <div class="row my-3 justify-content-center">
             <div class="col-12 col-md-6">
-                
+
                 <form action="{{ route('login') }}" method="POST"
                 class="p-4 shadow rounded-4 text-info">
                     @csrf

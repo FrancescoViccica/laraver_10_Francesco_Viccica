@@ -8,6 +8,8 @@
                 
             </div>
         </div>
+
+<x-display_error/>
         
          <div class="container">
         <div class="row my-3 justify-content-center">
