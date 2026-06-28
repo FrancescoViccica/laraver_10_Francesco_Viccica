@@ -18,19 +18,29 @@
         <li class="nav-item">
           <a class="nav-link button" href="{{ route('contacts') }}">Contatti</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link button" href="{{ route('merch.create') }}">Inserisci Prodotto</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            I Nostri Articoli
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('merch.list') }}">Tutti i nostri articoli</a></li>
-          </ul>
-        </li>
-      </ul>
+        
+        @auth
+          <li class="nav-item">
+            <a class="nav-link button" href="{{ route('merch.create') }}">Inserisci Prodotto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              I Nostri prodotti
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{ route('merch.list') }}">Tutti i nostri prodotti</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link button" href="{{ route('article.create') }}">Inserisci Articolo</a>
+          </li>
+        @endauth
 
+        <li class="nav-item">
+            <a class="nav-link button" href="{{ route('article.index') }}">I miei Articoli</a>
+          </li>
+      </ul> 
+      
       {{-- LINK DI DESTRA (Autenticazione) --}}
       <ul class="navbar-nav ms-auto">
         @guest
@@ -58,7 +68,7 @@
           </li>
         @endauth
       </ul>
-
+      
     </div>
   </div>
 </nav>

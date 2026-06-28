@@ -12,21 +12,21 @@
       
       {{-- @dd($articoli) --}}
       <div class="row">
-        <h2 class="display-5 text-white text-center text-color">I NOSTRI PRODOTTI</h2>
+        <h2 class="display-5 text-white text-center text-color">I MIEI ARTICOLI</h2>
       </div>
-      @foreach ($merchs as $merch )
+      @foreach ($articles as $article )
       
-      <div class="col-12 col-md-3">
-        <x-cardArticle
+      <div class="col-12 col-md-3 my-5 ">
+        <x-article_card
 
-        :merch="$merch"
+        :article="$article"
         
         {{-- title="{{ $merch['title'] }}"
         genres="{{ $merch['genres'] }}"
         articleId="{{ $merch['id'] }}"
         img="{{ $merch['img'] }}" --}}
         
-        ></x-cardArticle>
+        ></x-article_card>
       </div>
       
       @endforeach
