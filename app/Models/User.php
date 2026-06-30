@@ -29,4 +29,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+     public function merchs()
+    {
+        return $this->hasMany(Merch::class);
+    }
+
+
 }

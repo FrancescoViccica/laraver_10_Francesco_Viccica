@@ -11,7 +11,7 @@
       
       
       {{-- @dd($articoli) --}}
-      <div class="row">
+      <div class="row my-5">
         <h2 class="display-5 text-white text-center text-color">I NOSTRI PRODOTTI</h2>
       </div>
       @foreach ($merchs as $merch )

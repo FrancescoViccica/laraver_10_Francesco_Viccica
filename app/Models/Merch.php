@@ -11,6 +11,12 @@ protected $table = 'merchs';
 
 protected $fillable = 
 [
-'title', 'genres', 'img'
+'title', 'genres', 'img', 'user_id'
 ];
+
+
+ public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

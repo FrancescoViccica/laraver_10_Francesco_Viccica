@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MerchRequest;
 use Illuminate\Http\Request;
 use App\Models\Merch;
+use Illuminate\Support\Facades\Auth;
 
 class MerchController extends Controller
 {
@@ -41,6 +42,8 @@ public function create(){
 public function store(MerchRequest $request){
     
     // dd($request->all());
+    // dd(Auth::user()->id);
+    
 
     $title = $request->title;
     $genres = $request->genres;
@@ -62,7 +65,8 @@ public function store(MerchRequest $request){
         'title'=> $title,
         // 'genres'=> $request->genres,
         'genres'=> $genres,
-        'img'=>$img
+        'img'=>$img,
+        'user_id'=> Auth::user()->id
     ]);
 
     // $merch->title = $title;
