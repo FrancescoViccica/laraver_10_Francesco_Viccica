@@ -31,14 +31,28 @@
                         <input name='subtitle' value="{{ old('subtitle') }}" type="text" class="form-control" id="subtitle" aria-describedby="emailHelp">
                         
                     </div>
-
+                    
                     <div class="mb-3">
                         
                         <label for="body" class="form-label">Testo dell'articolo</label>
                         <textarea name='body' value="{{ old('body') }}" type="text" class="form-control" id="body" aria-describedby="emailHelp">
                         </textarea>
-
+                        
                     </div>
+                    
+                    {{-- Checkbox --}}
+                    <div class="mb-3">
+                    @foreach ($tags as $tag )
+                        
+                    <div class="form-check">
+                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" id="checkDefault">
+                        <label class="form-check-label" for="checkDefault">
+                            {{$tag->name}}
+                        </label>
+                    </div>
+                    @endforeach
+                    
+                </div>
                     
                     <div class="mb-3">
                         

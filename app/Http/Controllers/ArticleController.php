@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use \App\Models\Tag;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +22,8 @@ class ArticleController extends Controller
     */
     public function create()
     {
-        return view('article.create');
+        $tags = Tag::all(); // Recupera tutti i tag dal database
+        return view('article.create', compact('tags'));     
     }
 
     /**
@@ -38,12 +39,14 @@ class ArticleController extends Controller
             'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        Article::create([
+        $article = Article::create([
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'body' => $request->body,
             'img' => $request->file('img')->store('img', 'public') // Salva in storage/app/public/img
         ]);
+
+        $article->tags()->attach($request->tags); // Associa i tag selezionati all'articolo
 
         return redirect()->back()->with('message', 'articolo inserito con successo');
     }
@@ -61,7 +64,8 @@ class ArticleController extends Controller
     */
     public function edit(Article $article)
     {
-         return view('article.edit', compact('article'));
+        $tags = Tag::all(); // Recupera tutti i tag dal database
+         return view('article.edit', compact('article', 'tags'));
     }
 
     /**
@@ -91,6 +95,8 @@ class ArticleController extends Controller
 
         $article->save();
 
+        $article->tags()->sync($request->tags); // Aggiorna i tag associati all'articolo
+
         return redirect()->route('article.index')->with('message', 'Articolo aggiornato con successo!');
     }
 
@@ -99,6 +105,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+
+    $article->tags()->detach(); // Rimuove le associazioni dei tag prima di eliminare l'articolo
+    
         // Elimina l'immagine dal disco 'public' prima di cancellare il record
         if ($article->img) {
             Storage::disk('public')->delete($article->img);

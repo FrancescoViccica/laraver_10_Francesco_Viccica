@@ -34,8 +34,24 @@
             <textarea name="body" class="form-control" rows="5">{{ old('body', $article->body) }}</textarea>
           </div>
 
+           <div class="mb-3">
+                    @foreach ($tags as $tag )
+                        
+                    <div class="form-check">
+                        <input name="tags[]" class="form-check-input" type="checkbox" value="{{$tag->id}}" id="checkDefault" 
+                        @if ($article->tags->contains($tag))
+                            checked
+                        @endif>
+                        <label class="form-check-label text-white" for="checkDefault">
+                            {{$tag->name}}
+                        </label>
+                    </div>
+                    @endforeach
+                    
+                </div>
+
           <div class="mb-3">
-            <label class="form-label text-white">Immagine Attuale</label>
+            <label class="form-label">Immagine Attuale</label>
             <div class="mb-2">
               <img src="{{ Storage::url($article->img) }}" width="150" class="img-thumbnail" alt="">
             </div>
